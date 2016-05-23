@@ -1,0 +1,80 @@
+<link rel="import"
+      href="../polymer/polymer.html">
+<link rel="import"
+      href="../iron-selector/iron-selector.html">
+<dom-module id="pie-control-panel">
+  <style>
+    .item {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      margin-left: 5px;
+      background-color: rgb(255, 255, 255);
+      display: inline-block;
+      padding: 6px 12px;
+      line-height: 1.42857143;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      border: 1px solid;
+      border-radius: 4px;
+      border-color: rgb(204, 204, 204);
+    }
+    .item.iron-selected {
+      background: rgb(220, 220, 220);
+    }
+    .control-panel {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    .controls {
+      margin-left: 20px;
+      display: inline-block;
+    }
+
+  </style>
+
+  <template>
+    <div class="control-panel">
+      <div class="controls">
+        View:
+         <iron-selector selected="{{env.mode}}" attr-for-selected="label">
+          <div class="item" label="gather">gather</div>
+          <div class="item" label="view">view</div>
+          <div class="item" label="evaluate">evaluate</div>
+          <div class="item" label="instructor">instructor</div>
+        </iron-selector>
+      </div>
+      <div class="controls">
+        Locale:
+        <input type="text" value="{{env.locale::input}}"/>
+      </div>
+    </div>
+
+  </template>
+</dom-module>
+
+<script>
+  // element registration
+  Polymer({
+    is: "pie-control-panel",
+    properties: {
+      env: {
+        type: Object,
+        value: {
+          mode: "gather",
+          role: "student",
+          locale: "en_US"
+        },
+        observer: "envChanged"
+      }
+    },
+    observers: [
+      'envChanged(env.*)'
+    ],
+    envChanged: function(newValue, oldValue) {
+      this.fire('pie.envChanged', this.env);
+    }
+  });
+
+
+</script>
