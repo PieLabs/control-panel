@@ -1,7 +1,7 @@
 {
   "name": "control-panel",
   "version": "0.0.1",
-  "description": "Lightweight client side implementation of Portable Interaction Element container",
+  "description": "A control panel for serve-pie",
   "main": "./control-panel.html",
   "license": "MIT",
   "private": true,
@@ -9,7 +9,8 @@
     "jquery": "~2.1.3",
     "polymer": "Polymer/polymer#^1.0.0",
     "iron-selector": "PolymerElements/iron-selector#^1.0.0",
-    "webcomponentsjs": "~0.7.3"
+    "webcomponentsjs": "~0.7.3",
+    "bootstrap" : "~3.3.6"
     },
   "ignore": [
     "*/**",

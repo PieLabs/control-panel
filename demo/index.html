@@ -1,0 +1,25 @@
+<html>
+
+  <head>
+    <link rel="stylesheet" href="../../bootstrap/dist/css/bootstrap.css"/>
+    <link rel="import" href="../control-panel.html"/>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function(){
+
+
+        var panel = document.querySelector('pie-control-panel');
+
+        panel.env = {
+          mode: 'view',
+          role: 'student',
+          locale: 'en_US'
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <h2>pie-control-panel</h2>
+    <pie-control-panel></pie-control-panel>
+  </body>
+</html>
