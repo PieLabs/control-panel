@@ -4,6 +4,45 @@
 <link rel="import" href="../paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
 <link rel="import" href="../paper-dropdown-menu/paper-dropdown-menu.html">
+<dom-module id="label-wrapper">
+
+  <style>
+    .root{
+      position: relative;
+    }
+    .label{
+      color: #888888;
+      display: block;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      transform: translateY(-75%) scale(0.75);
+    }
+
+    :host{
+      float:left;
+    }
+  </style>
+  <template>
+    <div class="root">
+    <label class="label">{{label}}</label>
+    <content></content>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'label-wrapper',
+      properties: {
+        label: {
+          type: String
+        }
+      }
+    });
+
+  </script>
+
+</dom-module>
+
 <dom-module id="pie-control-panel">
   <style>
 
@@ -15,12 +54,17 @@
 
   <template>
 
-    <label id="modeLabel">Mode:</label>
-    <paper-radio-group aria-labelledby="modeLabel" selected="{{env.mode}}">
-      <paper-radio-button name="gather">gather</paper-radio-button>
-      <paper-radio-button name="view">view</paper-radio-button>
-      <paper-radio-button name="evaluate">evaluate</paper-radio-button>
-    </paper-radio-group>
+  <!--<paper-input-container attr-for-value="">-->
+
+    <label-wrapper label="Mode">
+      <paper-radio-group aria-labelledby="modeLabel" selected="{{env.mode}}">
+        <paper-radio-button name="gather">gather</paper-radio-button>
+        <paper-radio-button name="view">view</paper-radio-button>
+        <paper-radio-button name="evaluate">evaluate</paper-radio-button>
+      </paper-radio-group>
+    </label-wrapper>
+  <!--</paper-input-container>-->
+
 
     <paper-dropdown-menu label="Locale" noink no-animations>
       <paper-menu attr-for-selected="value" class="dropdown-content" selected="{{env.locale}}">
