@@ -1,5 +1,17 @@
-This is a browser-based reference implementation of a Portable Interaction Element container.
+## pie-control-panel
 
-A more full-featured and secure implementation should provide for server-side score processing and other features, but this is intended as a reference implementation and for simplifying interaction development.
+## install 
 
-TODO - add local demo server and tests to this package
+```
+npm install -g bower
+bower install
+```
+
+## demo
+
+```
+npm install -g polyserve
+polyserve 
+# go to http://localhost:8080/components/control-panel/demo/index.html
+```
+ 

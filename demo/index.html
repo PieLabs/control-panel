@@ -1,7 +1,12 @@
 <html>
 
   <head>
-    <link rel="stylesheet" href="../../bootstrap/dist/css/bootstrap.css"/>
+    <style>
+      body{
+        font-family: 'Roboto', san-serif;
+      }
+
+      </style>
     <link rel="import" href="../control-panel.html"/>
     <script>
 
@@ -11,7 +16,7 @@
         var panel = document.querySelector('pie-control-panel');
 
         panel.env = {
-          mode: 'view',
+          mode: 'gather',
           role: 'student',
           locale: 'en_US'
         }

@@ -10,8 +10,13 @@
     "polymer": "Polymer/polymer#^1.0.0",
     "iron-selector": "PolymerElements/iron-selector#^1.0.0",
     "webcomponentsjs": "~0.7.3",
-    "bootstrap" : "~3.3.6"
-    },
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^1.2.1",
+    "bootstrap": "~3.3.6",
+    "paper-item": "PolymerElements/paper-item#^1.2.1",
+    "paper-menu": "PolymerElements/paper-menu#^1.2.2",
+    "paper-radio-group": "PolymerElements/paper-radio-group#^1.2.0",
+    "paper-radio-button": "PolymerElements/paper-radio-button#^1.2.0"
+  },
   "ignore": [
     "*/**",
     "!client/**",

@@ -1,71 +1,57 @@
-<link rel="import"
-      href="../polymer/polymer.html">
-<link rel="import"
-      href="../iron-selector/iron-selector.html">
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-menu/paper-menu.html">
+<link rel="import" href="../paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../paper-dropdown-menu/paper-dropdown-menu.html">
 <dom-module id="pie-control-panel">
   <style>
-    .item {
-      margin-top: 0px;
-      margin-bottom: 0px;
-      margin-left: 5px;
-      background-color: rgb(255, 255, 255);
-      display: inline-block;
-      padding: 6px 12px;
-      line-height: 1.42857143;
-      text-align: center;
-      vertical-align: middle;
-      cursor: pointer;
-      border: 1px solid;
-      border-radius: 4px;
-      border-color: rgb(204, 204, 204);
-    }
-    .item.iron-selected {
-      background: rgb(220, 220, 220);
-    }
-    .control-panel {
-      margin-top: 15px;
-      margin-bottom: 15px;
-    }
-    .controls {
-      margin-left: 20px;
-      display: inline-block;
+
+    :host{
+      /*--paper-radio-group-item-padding: 0px 0px 0px 10px;*/
     }
 
   </style>
 
   <template>
-    <div class="control-panel">
-      <div class="controls">
-        View:
-         <iron-selector selected="{{env.mode}}" attr-for-selected="label">
-          <div class="item" label="gather">gather</div>
-          <div class="item" label="view">view</div>
-          <div class="item" label="evaluate">evaluate</div>
-          <div class="item" label="instructor">instructor</div>
-        </iron-selector>
-      </div>
-      <div class="controls">
-        Locale:
-        <input type="text" value="{{env.locale::input}}"/>
-      </div>
-    </div>
+
+    <label id="modeLabel">Mode:</label>
+    <paper-radio-group aria-labelledby="modeLabel" selected="{{env.mode}}">
+      <paper-radio-button name="gather">gather</paper-radio-button>
+      <paper-radio-button name="view">view</paper-radio-button>
+      <paper-radio-button name="evaluate">evaluate</paper-radio-button>
+    </paper-radio-group>
+
+    <paper-dropdown-menu label="Locale" noink no-animations>
+      <paper-menu attr-for-selected="value" class="dropdown-content" selected="{{env.locale}}">
+        <paper-item value="en_US">English (US)</paper-item>
+        <paper-item value="es_ES">Spanish</paper-item>
+      </paper-menu>
+    </paper-dropdown-menu>
+    
+    <paper-dropdown-menu label="Color" noink no-animations>
+      <paper-menu attr-for-selected="value" class="dropdown-content" selected="{{env.accessibility.colorContrast}}">
+        <paper-item value="black_on_white">Black on White</paper-item>
+        <paper-item value="black_on_rose">Black on Rose</paper-item>
+        <paper-item value="white_on_black">White on Black</paper-item>
+      </paper-menu>
+    </paper-dropdown-menu>
 
   </template>
 </dom-module>
 
 <script>
-  // element registration
   Polymer({
-    is: "pie-control-panel",
+    is: 'pie-control-panel',
     properties: {
       env: {
         type: Object,
         value: {
-          mode: "gather",
-          role: "student",
-          locale: "en_US"
+          mode: 'gather',
+          role: 'student',
+          locale: 'en_US'
         },
-        observer: "envChanged"
+        observer: 'envChanged'
       }
     },
     observers: [
@@ -75,6 +61,4 @@
       this.fire('pie.envChanged', this.env);
     }
   });
-
-
 </script>
