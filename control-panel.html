@@ -7,16 +7,23 @@
 <dom-module id="label-wrapper">
 
   <style>
+    :host{
+      padding-top: 8px;
+      margin-top: 8px;
+    }
+
     .root{
       position: relative;
     }
     .label{
+      font-size: 17px;
+      line-height: 17px;
       color: #888888;
       display: block;
       margin: 0;
       padding: 0;
       position: absolute;
-      transform: translateY(-75%) scale(0.75);
+      transform: translateY(-40%) scale(0.75);
     }
 
     :host{
@@ -48,6 +55,7 @@
 
     :host{
       /*--paper-radio-group-item-padding: 0px 0px 0px 10px;*/
+      display: block;
     }
 
   </style>
