@@ -1,14 +1,13 @@
 <html>
 
-  <head>
-    <style>
-      body{
-        font-family: 'Roboto', san-serif;
-      }
-
-      </style>
-    <link rel="import" href="../control-panel.html"/>
-    <script>
+<head>
+  <style>
+    body {
+      font-family: 'Roboto', san-serif;
+    }
+  </style>
+  <link rel="import" href="../control-panel.html" />
+  <script>
 
       document.addEventListener('DOMContentLoaded', function(){
 
@@ -18,13 +17,27 @@
         panel.env = {
           mode: 'gather',
           role: 'student',
-          locale: 'en_US'
+          locale: 'en_US'//,
+          //accessibility: {}
         }
+        
+        function updateInfo(){
+          document.querySelector('textarea').value = JSON.stringify(panel.env, null, '  ');  
+          setTimeout(updateInfo, 1000);
+        }
+
+        updateInfo();
       });
+
     </script>
-  </head>
-  <body>
-    <h2>pie-control-panel</h2>
-    <pie-control-panel></pie-control-panel>
-  </body>
+</head>
+
+<body>
+  <h2>pie-control-panel</h2>
+  <pie-control-panel></pie-control-panel>
+
+  <textarea rows="20" cols="30" class="info">
+    </textarea>
+</body>
+
 </html>

@@ -49,7 +49,8 @@
         value: {
           mode: 'gather',
           role: 'student',
-          locale: 'en_US'
+          locale: 'en_US',
+          accessibility: {}
         },
         observer: 'envChanged'
       }
@@ -58,6 +59,10 @@
       'envChanged(env.*)'
     ],
     envChanged: function(newValue, oldValue) {
+      if(newValue && !newValue.accessiblity){
+        newValue.accessibility = {};
+      }
+
       this.fire('pie.envChanged', this.env);
     }
   });
