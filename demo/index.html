@@ -9,10 +9,12 @@
   <link rel="import" href="../control-panel.html" />
   <script>
 
-      document.addEventListener('DOMContentLoaded', function(){
+      document.addEventListener('DOMContentLoaded', function() {
 
 
         var panel = document.querySelector('pie-control-panel');
+
+        panel.showSession = true;
 
         panel.env = {
           mode: 'gather',
@@ -27,6 +29,10 @@
         }
 
         updateInfo();
+      });
+
+      document.addEventListener('pie.showSession', function(value) {
+        document.querySelector('textarea').style.display = (value.detail === true) ? "inline-block" : "none";
       });
 
     </script>
