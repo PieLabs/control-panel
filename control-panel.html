@@ -4,18 +4,20 @@
 <link rel="import" href="../paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
 <link rel="import" href="../paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../paper-toggle-button/paper-toggle-button.html">
 <dom-module id="label-wrapper">
 
   <style>
-    :host{
+    :host {
       padding-top: 8px;
       margin-top: 8px;
     }
 
-    .root{
+    .root {
       position: relative;
     }
-    .label{
+
+    .label {
       font-size: 17px;
       line-height: 17px;
       color: #888888;
@@ -26,7 +28,7 @@
       transform: translateY(-40%) scale(0.75);
     }
 
-    :host{
+    :host {
       float:left;
     }
   </style>
@@ -53,9 +55,17 @@
 <dom-module id="pie-control-panel">
   <style>
 
-    :host{
+    :host {
       /*--paper-radio-group-item-padding: 0px 0px 0px 10px;*/
       display: block;
+    }
+
+    .hide-show-session {
+      display: inline-block;
+    }
+
+    paper-toggle-button {
+      margin-left: 50px;
     }
 
   </style>
@@ -88,7 +98,9 @@
         <paper-item value="white_on_black">White on Black</paper-item>
       </paper-menu>
     </paper-dropdown-menu>
-    
+
+    <paper-toggle-button class="hide-show-session" checked="{{showSession}}">{{sessionLabel}}</paper-toggle-button>
+
     <content></content>
   </template>
 </dom-module>
@@ -97,6 +109,10 @@
   Polymer({
     is: 'pie-control-panel',
     properties: {
+      showSession: {
+        type: Boolean,
+        observer: 'hideShowSession'
+      },
       env: {
         type: Object,
         value: {
@@ -109,10 +125,15 @@
       }
     },
     observers: [
+      'hideShowSession(showSession)',
       'envChanged(env.*)'
     ],
+    hideShowSession: function(newValue, oldValue) {
+      this.sessionLabel = this.showSession ? 'hide session' : 'show Session';
+      this.fire('pie.showSession', this.showSession);
+    },
     envChanged: function(newValue, oldValue) {
-      if(newValue && !newValue.accessiblity){
+      if (newValue && !newValue.accessiblity) {
         newValue.accessibility = {};
       }
 
