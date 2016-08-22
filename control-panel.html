@@ -9,33 +9,51 @@
 
   <style>
     :host {
-      padding-top: 8px;
+      padding-top: 5px;
       margin-top: 8px;
-    }
+      margin-right: 15px;
+      display: inline-block;
+   }
 
     .root {
       position: relative;
     }
 
-    .label {
-      font-size: 17px;
-      line-height: 17px;
-      color: #888888;
-      display: block;
-      margin: 0;
-      padding: 0;
-      position: absolute;
-      transform: translateY(-40%) scale(0.75);
+    paper-toggle-button, 
+    .noselect {
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none;   /* Chrome/Safari/Opera */
+      -khtml-user-select: none;    /* Konqueror */
+      -moz-user-select: none;      /* Firefox */
+      -ms-user-select: none;       /* Internet Explorer/Edge */
+      user-select: none;           /* Non-prefixed version, currently
+                                      not supported by any browser */
     }
 
-    :host {
-      float:left;
+    .label {
+      white-space: nowrap;
+      font-size: 16px;
+      line-height: 16px;
+      color: #888888;
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      height: 3px;
+      -webkit-font-smoothing: antialiased;
+      transform: translateX(-10%) translateY(-40%) scale(0.75);
+      font-weight: 400;
+    }
+
+    .content{
+      padding-top: 0px;
     }
   </style>
   <template>
     <div class="root">
-    <label class="label">{{label}}</label>
-    <content></content>
+    <div class="label noselect">{{label}}</div>
+    <div class="content">
+      <content></content>
+    </div>
     </div>
   </template>
   <script>
@@ -56,23 +74,28 @@
   <style>
 
     :host {
-      /*--paper-radio-group-item-padding: 0px 0px 0px 10px;*/
+      --paper-radio-group-item-padding: 0px 0px 0px 10px;
       display: block;
     }
-
-    .hide-show-session {
-      display: inline-block;
+    
+    paper-toggle-button {
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none;   /* Chrome/Safari/Opera */
+      -khtml-user-select: none;    /* Konqueror */
+      -moz-user-select: none;      /* Firefox */
+      -ms-user-select: none;       /* Internet Explorer/Edge */
+      user-select: none;           /* Non-prefixed version, currently
+                                      not supported by any browser */
     }
 
-    paper-toggle-button {
-      margin-left: 50px;
+    .session-preview{
+      margin-left: 10px;
     }
 
   </style>
 
   <template>
 
-  <!--<paper-input-container attr-for-value="">-->
 
     <label-wrapper label="Mode">
       <paper-radio-group aria-labelledby="modeLabel" selected="{{env.mode}}">
@@ -81,8 +104,6 @@
         <paper-radio-button name="evaluate">evaluate</paper-radio-button>
       </paper-radio-group>
     </label-wrapper>
-  <!--</paper-input-container>-->
-
 
     <paper-dropdown-menu label="Locale" noink no-animations>
       <paper-menu attr-for-selected="value" class="dropdown-content" selected="{{env.locale}}">
@@ -99,7 +120,9 @@
       </paper-menu>
     </paper-dropdown-menu>
 
-    <paper-toggle-button class="hide-show-session" checked="{{showSession}}">{{sessionLabel}}</paper-toggle-button>
+    <label-wrapper class="session-preview" label="Session Preview">
+      <paper-toggle-button class="hide-show-session" checked="{{showSession}}">{{sessionLabel}}</paper-toggle-button>
+    </label-wrapper>
 
     <content></content>
   </template>
@@ -129,7 +152,7 @@
       'envChanged(env.*)'
     ],
     hideShowSession: function(newValue, oldValue) {
-      this.sessionLabel = this.showSession ? 'hide session' : 'show session';
+      this.sessionLabel = this.showSession ? 'hide' : 'show';
       this.fire('pie.showSession', this.showSession);
     },
     envChanged: function(newValue, oldValue) {
