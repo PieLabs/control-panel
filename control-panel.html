@@ -145,23 +145,7 @@
           accessibility: {}
         },
         observer: 'envChanged'
-      },
-      _outsideChange: {
-        type: Boolean
       }
-    },
-    defaultValues: {
-      _outsideChange: false
-    },
-    created: function() {
-      var self = this;
-      document.addEventListener('pie.envChanged', function(event) {
-        if (event.target !== self) {
-          self.outsideChange = true;
-          self.env = event.detail;
-          self.envChanged(self.env);
-        }
-      });
     },
     observers: [
       'hideShowSession(showSession)',
@@ -172,13 +156,11 @@
       this.fire('pie.showSession', this.showSession);
     },
     envChanged: function(newValue, oldValue) {
-      if (this.outsideChange !== true) {
-        this.fire('pie.envChanged', this.env);
-      }
       if (newValue && !newValue.accessiblity) {
         newValue.accessibility = {};
       }
-      this.outsideChange = false;
+
+      this.fire('pie.envChanged', this.env);
     }
   });
 </script>
